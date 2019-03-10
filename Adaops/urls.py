@@ -21,7 +21,7 @@ route = DefaultRouter()
 route.register('idcs', IdcViewset, base_name='idcs')  # 机房
 route.register('users', UserViewset, base_name='users')  # 用户管理
 route.register('cabinet', CabinetViewset, base_name='cabinet')  # 机柜
-route.register('anufacturer', ManufacturerViewset, base_name='manufacturer')  # 厂商
+route.register('manufacturer', ManufacturerViewset, base_name='manufacturer')  # 厂商
 route.register('productModel', ProductModelViewset, base_name='productModel') # 厂品型号
 
 # urlpatterns
