@@ -7,6 +7,7 @@
 import os
 import sys
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # /Users/mac/venv/Adaops
@@ -34,7 +35,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',  # 用户管理
     'cabinet.apps.CabinetConfig',  # 机柜
     'manufacturers.apps.ManufacturersConfig',  # 服务器厂商
-    'servers.apps.ServersConfig'  # 服务器
+    'servers.apps.ServersConfig',  # 服务器
 ]
 
 MIDDLEWARE = [
