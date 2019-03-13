@@ -13,8 +13,8 @@ from rest_framework.documentation import include_docs_urls  # 接口文档, pip 
 from idcs.views import IdcViewset
 from users.views import UserViewset
 from cabinet.views import CabinetViewset
-from manufacturers.views import ManufacturerViewset
-from manufacturers.views import ProductModelViewset
+from manufacturers.views import ManufacturerViewset, ProductModelViewset
+from servers.views import ServerAutoReportViewset, IPViewset, NetworkDeviceViewset
 
 # route
 route = DefaultRouter()
@@ -22,7 +22,10 @@ route.register('idcs', IdcViewset, base_name='idcs')  # 机房
 route.register('users', UserViewset, base_name='users')  # 用户管理
 route.register('cabinet', CabinetViewset, base_name='cabinet')  # 机柜
 route.register('manufacturer', ManufacturerViewset, base_name='manufacturer')  # 厂商
-route.register('productModel', ProductModelViewset, base_name='productModel') # 厂品型号
+route.register('productModel', ProductModelViewset, base_name='productModel')  # 厂品型号
+route.register('serverAutoReport', ServerAutoReportViewset, base_name='serverAutoReport')
+route.register('ip', IPViewset, base_name='ip')
+route.register('networkDevice', NetworkDeviceViewset, base_name='networkDevice')
 
 # urlpatterns
 urlpatterns = [

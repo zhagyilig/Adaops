@@ -25,7 +25,7 @@ class Server(models.Model):
     uuid = models.CharField("UUID", max_length=100, db_index=True, null=True, unique=True, help_text="UUID")
 
     def __str__(self):
-        return "{}[{}]".format(self.hostname, self.manage_ip)
+        return "{}[{}]".format(self.hostname, self.ip)
 
     class Meta:
         db_table = 'resources_server'

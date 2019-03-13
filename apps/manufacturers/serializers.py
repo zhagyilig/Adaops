@@ -36,6 +36,7 @@ class ProductModelSerializer(serializers.ModelSerializer):
         字段级别验证, Usage: validata_+字段名
         """
         print('value: {}'.format(value))
+        # 转换成对象
         return value
 
     def validate(self, attrs):
@@ -66,3 +67,4 @@ class ProductModelSerializer(serializers.ModelSerializer):
             'name': manufacturer_obj.vendor_name
         }
         return ret
+
