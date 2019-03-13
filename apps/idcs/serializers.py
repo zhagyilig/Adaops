@@ -23,7 +23,7 @@ class IdcSerializers(serializers.Serializer):
     email = serializers.EmailField(required=True, label='邮件')
     letter = serializers.CharField(required=True, max_length=8, label='简称')
 
-    # validated_data 验证之后的数据
+    # validated_data 是验证之后的数据
     def create(self, validated_data):
         return IDC.objects.create(**validated_data)
 

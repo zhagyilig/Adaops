@@ -28,7 +28,7 @@ class Server(models.Model):
         return "{}[{}]".format(self.hostname, self.ip)
 
     class Meta:
-        db_table = 'resources_server'
+        db_table = 'resources_server' # 表名
         ordering = ['id']
 
 
