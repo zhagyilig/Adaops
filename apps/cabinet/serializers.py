@@ -55,4 +55,3 @@ class CabinetSerializer(serializers.Serializer):
     def create(self, validated_data):
         # print(validated_data) # {'idc': <IDC: 湖北机房>, 'name': 'test3'}
         return Cabinet.objects.create(**validated_data)
-

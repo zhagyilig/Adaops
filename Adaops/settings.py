@@ -6,6 +6,7 @@
 
 import os
 import sys
+import datetime
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +20,7 @@ SECRET_KEY = 'q#h)#%gdkxbtr11f=10j5^&n3ruq#1kg$rr3_1)=p9)12)_%4q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -30,7 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',  # https://github.com/ottoyiu/django-cors-headers
+    'rest_framework.authtoken',
     'rest_framework',  # DRF
+    'django_filters',  # https://github.com/carltongibson/django-filter
     'idcs.apps.IdcsConfig',  # IDC
     'users.apps.UsersConfig',  # 用户管理
     'cabinet.apps.CabinetConfig',  # 机柜
@@ -41,11 +45,18 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    '*',
 ]
 
 ROOT_URLCONF = 'Adaops.urls'
@@ -122,6 +133,36 @@ TATICFILES_DIRS = (
 )
 
 TIME_ZONE = 'Asia/Shanghai'
+
+# https://www.django-rest-framework.org/api-guide/pagination/
+REST_FRAMEWORK = {
+    # 分页
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    # 搜索
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    # 权限
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissions',
+        # 'rest_framework.permissions.AllowAny',  # 都可以访问
+        # 'Adaops.permissions.Permissions', # 自定义管理
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # http://getblimp.github.io/django-rest-framework-jwt/
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
+# http://getblimp.github.io/django-rest-framework-jwt/
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}
 
 # 程序日志配置
 LOGGING = {
