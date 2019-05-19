@@ -8,19 +8,18 @@ import os
 import sys
 import datetime
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# /Users/mac/venv/Adaops
-print("BASE_DIR: %s" % BASE_DIR)
+# 所有的资源目录
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+print('BASE_DIR: {}'.format(BASE_DIR))
+print('sys.path: {}'.format(sys.path))
 
 SECRET_KEY = 'q#h)#%gdkxbtr11f=10j5^&n3ruq#1kg$rr3_1)=p9)12)_%4q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -35,8 +34,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',  # DRF
     'django_filters',  # https://github.com/carltongibson/django-filter
-    'idcs.apps.IdcsConfig',  # IDC
+    'idcs.apps.IdcsConfig',  # 云厂商
     'users.apps.UsersConfig',  # 用户管理
+    'groups.apps.GroupsConfig',  # 用户组
     'cabinet.apps.CabinetConfig',  # 机柜
     'manufacturers.apps.ManufacturersConfig',  # 服务器厂商
     'servers.apps.ServersConfig',  # 服务器
@@ -55,9 +55,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
-    '*',
-]
+CORS_ORIGIN_WHITELIST = ['*', ]
 
 ROOT_URLCONF = 'Adaops.urls'
 
@@ -115,13 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
@@ -146,7 +140,7 @@ REST_FRAMEWORK = {
     # 权限
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.DjangoModelPermissions',
-        # 'rest_framework.permissions.AllowAny',  # 都可以访问
+        # 'rest_framework.permissions.AllowAny',  # 任何人都可以访问
         # 'Adaops.permissions.Permissions', # 自定义管理
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (

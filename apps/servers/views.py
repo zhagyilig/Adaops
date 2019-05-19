@@ -1,13 +1,17 @@
 from rest_framework import viewsets, mixins
 from servers.models import Server, NetworkDevice, IP
-from .serializers import ServerAutoReportSerializer, NetworkDeviceSerializer, IPSerializer, ServerSerializer
+from .serializers import ServerAutoReportSerializer, NetworkDeviceSerializer, \
+    IPSerializer, ServerSerializer
 from .serversFilter import ServerFilter, ServersFiter
 
 
-class ServerAutoReportViewset(mixins.CreateModelMixin, viewsets.GenericViewSet):
+
+class ServerAutoReportViewset(
+        mixins.CreateModelMixin,
+        viewsets.GenericViewSet):
     """
     create:
-        创建服务器信息
+        自动导入服务器信息
     """
     queryset = Server.objects.all()
     serializer_class = ServerAutoReportSerializer

@@ -5,9 +5,7 @@ from manufacturers.models import Manufacturers, ProductModel
 
 
 class Server(models.Model):
-    """
-    服务器
-    """
+    """服务器."""
     ip = models.CharField("管理IP", max_length=32, default=None, db_index=True, help_text="管理IP")
     hostname = models.CharField("主机名", max_length=50, default=None, db_index=True, help_text="主机名")
     cpu = models.CharField("CPU信息", max_length=250, default=None, help_text="CPU信息")
@@ -28,14 +26,12 @@ class Server(models.Model):
         return "{}[{}]".format(self.hostname, self.ip)
 
     class Meta:
-        db_table = 'resources_server' # 表名
+        db_table = 'resources_server'
         ordering = ['id']
 
 
 class NetworkDevice(models.Model):
-    """
-    网卡模型
-    """
+    """网卡模型."""
     name = models.CharField("网卡设备名", max_length=32)
     mac = models.CharField("网卡mac地址", max_length=32)
     host = models.ForeignKey(Server, verbose_name="所在服务器")
@@ -50,9 +46,7 @@ class NetworkDevice(models.Model):
 
 
 class IP(models.Model):
-    """
-    主机ip地址
-    """
+    """主机ip地址."""
     ip_addr = models.CharField("ip地址", max_length=20, db_index=True)
     netmask = models.CharField("子网掩码", max_length=20)
     device = models.ForeignKey(NetworkDevice, verbose_name="网卡")

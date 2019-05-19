@@ -20,3 +20,4 @@ class CabinetViewset(viewsets.ModelViewSet):
     """
     queryset = Cabinet.objects.all()
     serializer_class = CabinetSerializer
+
