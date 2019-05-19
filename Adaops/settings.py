@@ -11,6 +11,8 @@ import datetime
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 所有的资源目录
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
+
 print('BASE_DIR: {}'.format(BASE_DIR))
 print('sys.path: {}'.format(sys.path))
 
@@ -131,8 +133,9 @@ TIME_ZONE = 'Asia/Shanghai'
 # https://www.django-rest-framework.org/api-guide/pagination/
 REST_FRAMEWORK = {
     # 分页
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
+    # 使用自定义分类
+    'DEFAULT_PAGINATION_CLASS': 'custom_pagination.Pagination',
     # 搜索
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',

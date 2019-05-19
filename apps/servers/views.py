@@ -1,3 +1,4 @@
+from custom_pagination import Pagination
 from rest_framework import viewsets, mixins
 from servers.models import Server, NetworkDevice, IP
 from .serializers import ServerAutoReportSerializer, NetworkDeviceSerializer, \
@@ -5,10 +6,7 @@ from .serializers import ServerAutoReportSerializer, NetworkDeviceSerializer, \
 from .serversFilter import ServerFilter, ServersFiter
 
 
-
-class ServerAutoReportViewset(
-        mixins.CreateModelMixin,
-        viewsets.GenericViewSet):
+class ServerAutoReportViewset(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """
     create:
         自动导入服务器信息
@@ -27,7 +25,7 @@ class ServerViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Server.objects.all()
     serializer_class = ServerSerializer
     filter_class = ServersFiter
-
+    pagination_class = Pagination
 
 class NetworkDeviceViewset(viewsets.ReadOnlyModelViewSet):
     """

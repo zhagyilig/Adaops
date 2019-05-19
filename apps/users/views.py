@@ -3,9 +3,10 @@
 # time: 2019-04-14 11:06
 # description: 用户资源视图集
 
-
-from rest_framework import viewsets, mixins, response, permissions
+from custom_pagination import Pagination
 from django.contrib.auth import get_user_model
+from rest_framework import viewsets, mixins, response, permissions
+from rest_framework.pagination import PageNumberPagination
 
 User = get_user_model()
 
@@ -22,11 +23,12 @@ class UserViewset(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    pagination_class = Pagination
     filter_class = UserFilter
     filter_fields = ("username",)
-    extra_perm_map = {
-        "GET": ['auth.view_user']
-    }
+    # extra_perm_map = {
+    #     "GET": ['auth.view_user']
+    # }
 
 
 class DashboardStatusViewset(viewsets.ViewSet):
