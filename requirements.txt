@@ -30,7 +30,7 @@ entrypoints==0.3
 flake8==3.7.7
 future==0.17.1
 GoDaddyPy==2.2.7
-httpie==1.0.2
+httpie==1.0.3
 idna==2.6
 ipykernel==5.1.0
 ipyparallel==6.2.3
