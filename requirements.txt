@@ -94,7 +94,7 @@ qingstor-sdk==2.2.6
 qtconsole==4.4.3
 requests==2.21.0
 route53==1.0.1
-rsa==3.4.2
+rsa==4.1
 s3transfer==0.1.13
 saws==0.4.3
 Send2Trash==1.5.0
