@@ -87,7 +87,7 @@ python-gitlab==1.7.0
 pytz==2018.6
 pyvim==2.0.23
 pyvmomi==6.7.1
-PyYAML==3.13
+PyYAML==5.4
 pyzabbix==0.7.5
 pyzmq==17.1.2
 qingstor-sdk==2.2.6
